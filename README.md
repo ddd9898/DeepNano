@@ -20,7 +20,7 @@ cd DeepNano
 pip install -r requirements.txt
 ```
 
-
+This may take several minutes depending on your internet connection.
 
 
 ***
@@ -40,7 +40,33 @@ Our trained models can be downloaded at [link](https://mailstsinghuaeducn-my.sha
 ***
 ### Demo
 
-Coming soon..
+1. Download the checkpoint of DeepNano-seq(NAI) 8M and put it in the /output/checkpoint.
+
+2. Organize your input information as the following format:
+
+   a. Pair data: 
+
+   | Nanobody-ID | Antigen-ID |  1   |
+   | ----------- | :--------: | :--: |
+
+   b. Sequence data:
+
+   ```python
+   >nb0
+   MAQVQLLESGGGLVQPGGSLRLSCAASGVTITDEDMTRVRQAPGKGLEWVSSILNTGGSTYYADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAAVHEKAADMNFWGQGTLVTVSS
+   >at0
+   DHNPFISVEWLKGPILEATAGDELVKLPVKLAAYPPPEFQWYKDGKALSGRHSPHALVLKEVTEASTGTYTLALWNSAAGLRRNISLELVVNVPPQIHEKEASSPSIYSRHSRQALTCTAYGVPLPLSIQWHWRPWTPCKMFAQRSLRRRQQQDLMPQCRDWRAVTTQDAVNPIESLDTWTEFVEGKNKTVSKLVIQNANVSAMYKCVVSNKVGQDERLIYFYVTTHHHHHH
+   ```
+
+​	Then change the three variables (`fasta_path`,`pair_path` and `output_path`)  in` ./predict.py`.
+
+3. Run the script to get predictions:
+
+   ```
+   python predict.py --model 0 --esm2 8M &
+   ```
+
+   where the ` --model` 0, 1, and 2 correspond to the DeepNano-seq(PPI),DeepNano-seq(NAI), and DeepNano(NAI) models, respectively.
 
 
 ***
