@@ -20,7 +20,7 @@ cd DeepNano
 pip install -r requirements.txt
 ```
 
-This may take several minutes depending on your internet connection.
+This may take several minutes depending on your internet conditions.
 
 
 ***
@@ -67,6 +67,24 @@ Our trained models can be downloaded at [link](https://mailstsinghuaeducn-my.sha
    ```
 
    where the ` --model` 0, 1, and 2 correspond to the DeepNano-seq(PPI),DeepNano-seq(NAI), and DeepNano(NAI) models, respectively.
+   
+   Prediction results will be saved on the `output_path` .
+
+
+
+
+***
+
+### Inference time 
+
+For the human serum albumin (609aa), to predict its interactions with 1 million nanobodies, the elapsed time for both DeepNano-seq and DeepNano models is shown in the table below:
+
+|              | 8M   | 35M  | 150M  | 650M |
+| ------------ | ---- | ---- | ----- | ---- |
+| DeepNano-seq | 1.15 | 2.27 | 6.92  | 20.3 |
+| DeepNano     | 2.30 | 4.62 | 13.92 | 40.8 |
+
+Time units are in hours. The prediction was made on a 40G A100.
 
 
 ***
