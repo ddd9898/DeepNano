@@ -68,7 +68,7 @@ Our trained models can be downloaded at [link](https://mailstsinghuaeducn-my.sha
 
    where the ` --model` 0, 1, and 2 correspond to the DeepNano-seq(PPI),DeepNano-seq(NAI), and DeepNano(NAI) models, respectively.
    
-   Prediction results will be saved on the `output_path` .
+   Prediction results will be saved at the `output_path` .
 
 
 
