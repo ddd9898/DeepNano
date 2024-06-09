@@ -24,14 +24,6 @@ Nanobody_Antigen-main/all_pair_data.pair.tsv: 1800 NAIs (<800aa) for testing.
 
 Sabdab/all_binding_site_data_5A.csv: 1184 true NAIs got from the SAbDab-nano database.
 
-Sabdab/sabdab_traindata.pair.tsv: the NAI  training set.
-
-Sabdab/sabdab_traindata.seqs.fasta: sequence information of proteins in the NAI  training set.
-
-Sabdab/sabdab_valdata.pair.tsv: the NAI validation set.
-
-Sabdab/sabdab_valdata.seqs.fasta: sequence information of proteins in the NAI  validation set.
-
 
 
 ### Anti-GST or anti-HSA nanobodies
