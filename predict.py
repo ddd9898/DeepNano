@@ -178,7 +178,7 @@ for n in range(len(p)):
 output = pd.DataFrame(columns=['Nanobody ID','Antigen ID','Prediction'],data=output)
 output.to_csv(output_path,index = None)
 
-
-from utils.evaluate import evaluate
-precision,recall,accuracy,F1_score,Top10,Top20,Top50,AUC_ROC,AUC_PR = evaluate(g,p)
-print('precision={:.4f},recall={:.4f},accuracy={:.4f},F1_score={:.4f},AUC_ROC={:.4f},AUC_PR={:.4f}'.format(precision,recall,accuracy,F1_score,AUC_ROC,AUC_PR))
+if len(testDataset.pair_data[0]) == 3:
+    from utils.evaluate import evaluate
+    precision,recall,accuracy,F1_score,Top10,Top20,Top50,AUC_ROC,AUC_PR = evaluate(g,p)
+    print('precision={:.4f},recall={:.4f},accuracy={:.4f},F1_score={:.4f},AUC_ROC={:.4f},AUC_PR={:.4f}'.format(precision,recall,accuracy,F1_score,AUC_ROC,AUC_PR))
