@@ -46,8 +46,8 @@ Our trained models can be downloaded at [link](https://mailstsinghuaeducn-my.sha
 
    a. Pair data: 
 
-   | Nanobody-ID | Antigen-ID |  1   |
-   | ----------- | :--------: | :--: |
+   | Nanobody-ID | Antigen-ID | Label |
+   | ----------- | :--------: | :---: |
 
    b. Sequence data:
 
