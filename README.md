@@ -5,7 +5,7 @@
 ***
 ### System requirements
 
-python=3.9, transformers=4.27.4, biopython=1.83, pandas==2.2.2, scikit-learn==1.0.2
+python=3.9, transformers=4.27.4, biopython=1.78, pandas==1.3.5, scikit-learn==1.0.2
 
 ***
 ### Setup of DeepNano
