@@ -1,3 +1,8 @@
 transformers==4.27.4
 
 biopython==1.83
+
+pandas==2.2.2
+
+scikit-learn==1.0.2
+

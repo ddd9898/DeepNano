@@ -5,7 +5,7 @@
 ***
 ### System requirements
 
-python=3.9, transformers=4.27.4, biopython=1.83
+python=3.9, transformers=4.27.4, biopython=1.83, pandas==2.2.2, scikit-learn==1.0.2
 
 ***
 ### Setup of DeepNano
@@ -40,7 +40,7 @@ Our trained models can be downloaded at [link](https://mailstsinghuaeducn-my.sha
 ***
 ### Demo
 
-1. Download the checkpoint of DeepNano-seq(NAI) 8M and put it in the /output/checkpoint.
+1. Download the checkpoint of DeepNano-seq(NAI) 8M and put it in the ./output/checkpoint.
 
 2. Organize your input information as the following format:
 
@@ -63,7 +63,7 @@ Our trained models can be downloaded at [link](https://mailstsinghuaeducn-my.sha
 3. Run the script to get predictions:
 
    ```
-   python predict.py --model 0 --esm2 8M &
+   python predict.py --model 1 --esm2 8M &
    ```
 
    where the ` --model` 0, 1, and 2 correspond to the DeepNano-seq(PPI),DeepNano-seq(NAI), and DeepNano(NAI) models, respectively.
