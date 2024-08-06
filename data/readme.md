@@ -1,39 +1,13 @@
-### PPI training and test data
-
-D_script/pairs/human_*: human PPIs used for training and validation.
-
-D_script/pairs/mouse_*:  M.musculus  PPIs used for testing.
-
-D_script/pairs/fly_*:  D.melanogaster PPIs used for testing.
-
-D_script/pairs/worm_*: C.elegans PPIs used for testing.
-
-D_script/pairs/yeast_*: S.cerevisiae PPIs used for testing.
-
-D_script/pairs/ecoli_*: E. Coli PPIs used for testing.
-
-
-
-### NAI test data
-
-Nanobody_Antigen-main/all_pair_data.pair.tsv: 1800 NAIs (<800aa) for testing.
-
-
-
-### NAI training and validation data
-
-Sabdab/all_binding_site_data_5A.csv: 1184 true NAIs got from the SAbDab-nano database.
-
-
-
-### Anti-GST or anti-HSA nanobodies
-
-case_study/mmc3_GST_pos.csv: 59 anti-GSTs with ELISA value.
-
-case_study/mmc4_HSA_pos.csv: 33 anti-HSAs with ELISA value.
-
-
-
-### Background nanobodies from INDI
-
-[INDI/INDI_100w_nanobody_fasta](https://cloud.tsinghua.edu.cn/f/838de6cfcdc146babfb1/?dl=1): one million nanobodies random sampled from the INDI-ngs dataset.
+| No.  | Type |   Name    | Original Source                  | Path                                         |                         Description                          | Link                                                         |
+| :--: | ---- | :-------: | -------------------------------- | -------------------------------------------- | :----------------------------------------------------------: | ------------------------------------------------------------ |
+|  1   | PPI  |   Human   | Szklarczyk,2019; Sledzieski,2021 | D_script/pairs/human_train.tsv               |                 human PPIs used for training                 | [➡️](https://github.com/ddd9898/DeepNano/blob/main/data/D_script/pairs/human_train.tsv) |
+|  2   | PPI  |   Mouse   | Szklarczyk,2019; Sledzieski,2021 | D_script/pairs/mouse_test.tsv                |              M.musculus  PPIs used for testing               | [➡️](https://github.com/ddd9898/DeepNano/blob/main/data/D_script/pairs/mouse_test.tsv) |
+|  3   | PPI  |    Fly    | Szklarczyk,2019; Sledzieski,2021 | D_script/pairs/fly_test.tsv                  |             D.melanogaster PPIs used for testing             | [➡️](https://github.com/ddd9898/DeepNano/blob/main/data/D_script/pairs/fly_test.tsv) |
+|  4   | PPI  |   Worm    | Szklarczyk,2019; Sledzieski,2021 | D_script/pairs/worm_test.tsv                 |               C.elegans PPIs used for testing                | [➡️](https://github.com/ddd9898/DeepNano/blob/main/data/D_script/pairs/worm_test.tsv) |
+|  5   | PPI  |   Yeast   | Szklarczyk,2019; Sledzieski,2021 | D_script/pairs/yeast_test.tsv                |              S.cerevisiae PPIs used for testing              | [➡️](https://github.com/ddd9898/DeepNano/blob/main/data/D_script/pairs/yeast_test.tsv) |
+|  6   | PPI  |  E.coli   | Szklarczyk,2019; Sledzieski,2021 | D_script/pairs/ecoli_test.tsv                |                E. Coli PPIs used for testing                 | [➡️](https://github.com/ddd9898/DeepNano/blob/main/data/D_script/pairs/ecoli_test.tsv) |
+|  7   | NAI  | NAI-train | SAbDab-nano, Schneider, 2022     | Sabdab/all_binding_site_data_5A.csv          |     1184 positive NAIs got from the SAbDab-nano database     | [➡️](https://github.com/ddd9898/DeepNano/blob/main/data/Sabdab/all_binding_site_data_5A.csv) |
+|  8   | NAI  | NAI-test  | sdAd-DB, Wilton,2018             | Nanobody_Antigen-main/all_pair_data.pair.tsv |                1800 NAIs (<800aa) for testing                | [➡️](https://github.com/ddd9898/DeepNano/blob/main/data/Nanobody_Antigen-main/all_pair_data.pair.tsv) |
+|  9   | NAI  | HSA-test  | Xiang,2021                       | case_study/mmc4_HSA_pos.csv                  |                33 anti-HSAs with ELISA value                 | [➡️](https://github.com/ddd9898/DeepNano/blob/main/data/case_study/mmc4_HSA_pos.csv) |
+|  10  | NAI  | GST-train | Xiang,2021                       | case_study/mmc3_GST_pos.csv                  |                59 anti-GSTs with ELISA value                 | [➡️](https://github.com/ddd9898/DeepNano/blob/main/data/case_study/mmc3_GST_pos.csv) |
+|  11  | NAI  | INDI-test | Deszynski, 2022                  | INDI/INDI_100w_nanobody.fasta                | one million nanobodies random sampled from the INDI-ngs dataset | [➡️](https://cloud.tsinghua.edu.cn/f/838de6cfcdc146babfb1/?dl=1) |
