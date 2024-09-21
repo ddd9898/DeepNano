@@ -23,7 +23,7 @@ def evaluate(GT,Pre,thresh = 0.5):
     accuracy = accuracy_score(GT,Pre)
     recall = recall_score(GT,Pre)
     precision = precision_score(GT,Pre)
-    F1_score = f1_score(GT,Pre,average='macro')
+    F1_score = f1_score(GT,Pre,average='binary')
     
     return precision,recall,accuracy,F1_score,Top10,Top20,Top50,AUC_ROC,AUC_PR
  

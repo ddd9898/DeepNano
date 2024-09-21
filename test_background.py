@@ -21,10 +21,10 @@ from utils.dataloader import seqData_Dscript
 from utils.evaluate import evaluate
 
 
-# ESM2_MODEL = 'esm2_t6_8M_UR50D'
+ESM2_MODEL = 'esm2_t6_8M_UR50D'
 # ESM2_MODEL = 'esm2_t12_35M_UR50D'
 # ESM2_MODEL = 'esm2_t30_150M_UR50D'
-ESM2_MODEL = 'esm2_t33_650M_UR50D'
+# ESM2_MODEL = 'esm2_t33_650M_UR50D'
 
 def get_args():
     parser = argparse.ArgumentParser(description='Train the model',

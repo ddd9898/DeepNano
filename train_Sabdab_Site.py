@@ -12,7 +12,7 @@ import torch.distributed as dist
 import warnings
 warnings.filterwarnings("ignore")
 from models.models import DeepNano_site
-from utils.dataloader import split_Train_Test,infaData_Sabdab
+from utils.dataloader import infaData_Sabdab
 from utils.evaluate import evaluate_site
 
 
@@ -163,9 +163,8 @@ if __name__ == '__main__':
 
 
     #Step 1:Prepare dataloader
-    trainData,testData = split_Train_Test(data_path='./data/Sabdab/all_binding_site_data_5A.csv', test_ratio=0.05)
-    trainDataset = infaData_Sabdab(data=trainData,augment=False, addNeg=False)
-    valDataset = infaData_Sabdab(data=testData,augment=False, addNeg=False)
+    trainDataset = infaData_Sabdab(pair_path='./data/Sabdab/NAI_train_pos.csv')
+    valDataset = infaData_Sabdab(pair_path='./data/Sabdab/NAI_val_pos.csv')
     
     from utils.dataloader import collate_fn_infaData
     train_loader = DataLoader(trainDataset, batch_size=BATCH_SIZE, shuffle=True,pin_memory=True,collate_fn=collate_fn_infaData)

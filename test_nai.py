@@ -20,10 +20,10 @@ from models.models import baseline, DeepNano_seq,DeepNano
 from utils.dataloader import seqData_NBAT_Test
 from utils.evaluate import evaluate
 
-# ESM2_MODEL = 'esm2_t6_8M_UR50D'
+ESM2_MODEL = 'esm2_t6_8M_UR50D'
 # ESM2_MODEL = 'esm2_t12_35M_UR50D'
 # ESM2_MODEL = 'esm2_t30_150M_UR50D'
-ESM2_MODEL = 'esm2_t33_650M_UR50D'
+# ESM2_MODEL = 'esm2_t33_650M_UR50D'
 
 
 def predicting(model, device, loader, Model_type):
@@ -67,50 +67,6 @@ def predicting(model, device, loader, Model_type):
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
-
-
-from torch.utils.data import Dataset
-import pandas as pd
-import numpy as np
-from Bio import SeqIO
-import random
-import torch
-from torch import nn
-
-# class seqData_NBAT(Dataset):
-#     def __init__(self,):
-#         super(seqData_NBAT,self).__init__()
-        
-#         self.seq_data = list()
-        
-#         ##Load all PPI sequence
-#         PPI_seq_dict = dict()
-#         for fa in SeqIO.parse('./compare/D-SCRIPT/my_test/section1/all_pair_data.seqs.fasta','fasta'):
-#             ID = fa.description
-#             seq = ''.join(list(fa.seq))
-#             PPI_seq_dict[ID] = seq
-        
-#         ##Load pair data
-#         data = pd.read_csv('./compare/D-SCRIPT/my_test/section1/all_pair_data.pair.tsv',sep='\t',header=None).values.tolist()
-        
-#         for n,item in enumerate(data):
-#             ID1, ID2, label = item
-#             seq1 = PPI_seq_dict[ID1]
-#             seq2 = PPI_seq_dict[ID2]
-            
-#             if len(seq1)>800 or len(seq2)>800:
-#                 continue
-            
-#             self.seq_data.append([seq1,seq2,label])
-
-#     def __len__(self):
-#         return len(self.seq_data)
-#     def __getitem__(self,i):
-#         seq1,seq2,label = self.seq_data[i]
-       
-#         return seq1,seq2,label
-
-
 print('##########################在nai数据上测试DeepNano-seq(DScriptData){}模型：'.format(ESM2_MODEL))
 ###装载训练好的模型
 if ESM2_MODEL == 'esm2_t6_8M_UR50D':
@@ -143,7 +99,6 @@ test_loader = DataLoader(testDataset, batch_size=32, shuffle=False)
 #Test
 g,p_ave,p_min,p_max = predicting(model, device, test_loader,Model_type=1)
 p1 = (p_ave+p_min+p_max)/3
-# np.save('./compare/D-SCRIPT/my_test/section1/results(PPI_seqMLP_ESM2_Ensemble).npy',[g,p,p_ave,p_min,p_max])
 # np.save('./output/results_DeepNano_seq(DScriptData)_{}.npy'.format('NBAT'),[g,p1,p_ave,p_min,p_max])
 
 ##Ensemble
@@ -186,8 +141,6 @@ print(len(testDataset))
 #Test
 g,p_ave,p_min,p_max = predicting(model, device, test_loader,Model_type=1)
 p1 = (p_ave+p_min+p_max)/3
-
-# np.save('./compare/D-SCRIPT/my_test/section1/results(PPI_seqMLP_ESM2_Ensemble).npy',[g,p,p_ave,p_min,p_max])
 # np.save('./output/results_DeepNano_seq(SabdabData)_{}.npy'.format('NBAT'),[g,p1,p_ave,p_min,p_max])
 
 ##Ensemble
@@ -237,7 +190,6 @@ test_loader = DataLoader(testDataset, batch_size=128, shuffle=False)
 g,p_ave,p_min,p_max = predicting(model, device, test_loader,Model_type=1)
 p1 = (p_ave+p_min+p_max)/3
 print(len(p1))
-# np.save('./compare/D-SCRIPT/my_test/section1/results(PPI_seqMLP_ESM2_Ensemble).npy',[g,p,p_ave,p_min,p_max])
 # np.save('./output/results_DeepNano(SabdabData)_{}.npy'.format('NBAT'),[g,p1,p_ave,p_min,p_max])
 
 ##Ensemble

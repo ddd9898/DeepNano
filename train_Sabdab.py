@@ -11,7 +11,7 @@ from torch.nn import functional as F
 import warnings
 warnings.filterwarnings("ignore")
 from models.models import DeepNano_seq,DeepNano
-from utils.dataloader import seqData_Sabdab,split_Train_Test,seqData_NBAT_Test
+from utils.dataloader import seqData_Sabdab,seqData_NBAT_Test
 from utils.evaluate import evaluate
 
 '''
@@ -190,15 +190,13 @@ if __name__ == '__main__':
 
     
     #Step 1:Prepare dataloader
-    trainData,valData = split_Train_Test(data_path='./data/Sabdab/all_binding_site_data_5A.csv',test_ratio=0.05)
-
-    trainDataset = seqData_Sabdab(trainData,addNeg=True)
-    valDataset   = seqData_Sabdab(valData,addNeg=True)
+    trainDataset = seqData_Sabdab('./data/Sabdab/NAI_train.csv')
+    valDataset   = seqData_Sabdab('./data/Sabdab/NAI_val.csv')
     testDataset  = seqData_NBAT_Test(seq_path='./data/Nanobody_Antigen-main/all_pair_data.seqs.fasta',
                                 pair_path = './data/Nanobody_Antigen-main/all_pair_data.pair.tsv')
     train_loader = DataLoader(trainDataset, batch_size=BATCH_SIZE, shuffle=True,pin_memory=True,drop_last=True)
     val_loader = DataLoader(valDataset, batch_size=BATCH_SIZE, shuffle=False,drop_last=True)
-    test_loader = DataLoader(testDataset, batch_size=BATCH_SIZE, shuffle=False,drop_last=True)
+    test_loader = DataLoader(testDataset, batch_size=BATCH_SIZE, shuffle=False,drop_last=False)
 
     #Step 2: Set  model
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")

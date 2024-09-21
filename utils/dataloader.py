@@ -126,54 +126,17 @@ class seqData_NBAT_Test(Dataset):
        
         return seq1,seq2,label
 
-    
-def split_Train_Test(data_path,test_ratio=0.1):
-    '''
-    data_path: 数据路径,data中每行为一个样本
-    Return: TrainData,TestData
-    '''
-    ##Load pair data
-    data = pd.read_csv(data_path).values.tolist()
-
-    ##Split Train and Test
-    idx_list = list(range(len(data)))
-    random.shuffle(idx_list)
-    Test_Num = int(len(data)*test_ratio)
-    train_list = idx_list[Test_Num:]
-    test_list = idx_list[:Test_Num]
-    
-    # #Debug
-    # train_list = idx_list[100:200]
-    # test_list = idx_list[:100]
-    
-    trainData = [data[idx] for idx in train_list]
-    testData =  [data[idx] for idx in test_list]
-        
-    return trainData,testData
-    
 
 class seqData_Sabdab(Dataset):
-    def __init__(self, data, addNeg=True):
+    def __init__(self, pair_path):
         super(seqData_Sabdab,self).__init__()
         
-        # data = pd.read_csv(pair_path).values.tolist()
+        data = pd.read_csv(pair_path).values.tolist()
         self.seq_data = list()
         for item in data:
-            _,_,seq1,_,_,seq2,_,_,_ = item
-            if len(seq1)>800 or len(seq2)>800:
-                continue
-            self.seq_data.append([seq1,seq2,1])
+            ID1,seq1,ID2,seq2,label = item
 
-        ##Add negative
-        seq_data_neg = list()
-        candidates = list(range(len(self.seq_data)))
-        if addNeg:
-            for idx1 in candidates:
-                for t in range(10):
-                    idx2 = random.choice(candidates)
-                    seq_data_neg.append([self.seq_data[idx2][0],self.seq_data[idx1][1],0])
-                
-            self.seq_data.extend(seq_data_neg)
+            self.seq_data.append([seq1,seq2,label])
 
 
     def __len__(self):
@@ -185,28 +148,16 @@ class seqData_Sabdab(Dataset):
         return seq1,seq2,label
 
 class infaData_Sabdab(Dataset):
-    def __init__(self, data, augment=False, addNeg=True):
+    def __init__(self, pair_path, augment = False):
         super(infaData_Sabdab,self).__init__()
         
-        # data = pd.read_csv(pair_path).values.tolist()
+        data = pd.read_csv(pair_path).values.tolist()
         self.seq_data = list()
         for item in data:
             _,_,seq1,_,_,seq2,BSite2,_,_ = item
-            if len(seq1)>800 or len(seq2)>800:
-                continue
             BSite2 = self.__augmentBSite(BSite2,seq2,augment=augment)
             self.seq_data.append([seq1,seq2,1,BSite2])
         
-        ##Add negative
-        seq_data_neg = list()
-        candidates = list(range(len(self.seq_data)))
-        if addNeg:
-            for idx1 in candidates:
-                for t in range(10):
-                    idx2 = random.choice(candidates)
-                    seq_data_neg.append([self.seq_data[idx2][0],self.seq_data[idx1][1],0,self.seq_data[idx1][3]])
-                
-            self.seq_data.extend(seq_data_neg)
 
     def __len__(self):
         return len(self.seq_data)
@@ -215,7 +166,7 @@ class infaData_Sabdab(Dataset):
         seq1,seq2,label,BSite2 = self.seq_data[i]
        
         return seq1,seq2,label,BSite2
-
+    
     def __augmentBSite(self,BSite2,seq2,augment=True):
         BSite2 = [int(idx) for idx in BSite2.split(',')]
         ##对结合界面进行数据增广

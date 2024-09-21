@@ -17,13 +17,13 @@ from transformers import AutoTokenizer, AutoModel
 from Bio import SeqIO
 from tqdm import tqdm
 from models.models import DeepNano_seq,DeepNano
-from utils.dataloader import seqData_Dscript
+# from utils.dataloader import seqData_Dscript
 from utils.evaluate import evaluate
 
-# ESM2_MODEL = 'esm2_t6_8M_UR50D'
+ESM2_MODEL = 'esm2_t6_8M_UR50D'
 # ESM2_MODEL = 'esm2_t12_35M_UR50D'
 # ESM2_MODEL = 'esm2_t30_150M_UR50D'
-ESM2_MODEL = 'esm2_t33_650M_UR50D'
+# ESM2_MODEL = 'esm2_t33_650M_UR50D'
 
 def predicting(model, device, loader, Model_type):
     model.eval()
@@ -136,7 +136,7 @@ model.load_state_dict(weights)
 ###装载测试数据
 # testDataset = seqData_NBAT(pair_path='./data/Nanobody_Antigen-main/all_pair_data.csv')
 testDataset = seqData_HSA()
-test_loader = DataLoader(testDataset, batch_size=128, shuffle=False)
+test_loader = DataLoader(testDataset,batch_size=16, shuffle=False)
 
 #Test
 g,p_ave,p_min,p_max = predicting(model, device, test_loader,Model_type=3)
@@ -187,7 +187,7 @@ model.load_state_dict(weights)
 # testDataset = seqData_NBAT(pair_path='./data/Nanobody_Antigen-main/all_pair_data.csv')
 testDataset = seqData_HSA()
 print(len(testDataset))
-test_loader = DataLoader(testDataset, batch_size=128, shuffle=False)
+test_loader = DataLoader(testDataset,batch_size=16, shuffle=False)
 
 #Test
 g,p_ave,p_min,p_max = predicting(model, device, test_loader,Model_type=3)
@@ -246,7 +246,7 @@ model.load_state_dict(weights)
 # testDataset = seqData_NBAT(pair_path='./data/Nanobody_Antigen-main/all_pair_data.csv')
 testDataset = seqData_HSA()
 print(len(testDataset))
-test_loader = DataLoader(testDataset, batch_size=128, shuffle=False)
+test_loader = DataLoader(testDataset,batch_size=16, shuffle=False)
 
 #Test
 g,p_ave,p_min,p_max = predicting(model, device, test_loader,Model_type=3)
@@ -344,7 +344,7 @@ model.load_state_dict(weights)
 ###装载测试数据
 # testDataset = seqData_NBAT(pair_path='./data/Nanobody_Antigen-main/all_pair_data.csv')
 testDataset = seqData_GST()
-test_loader = DataLoader(testDataset, batch_size=128, shuffle=False)
+test_loader = DataLoader(testDataset,batch_size=16, shuffle=False)
 
 #Test
 g,p_ave,p_min,p_max = predicting(model, device, test_loader,Model_type=3)
@@ -398,7 +398,7 @@ model.load_state_dict(weights)
 ###装载测试数据
 # testDataset = seqData_NBAT(pair_path='./data/Nanobody_Antigen-main/all_pair_data.csv')
 testDataset = seqData_GST()
-test_loader = DataLoader(testDataset, batch_size=128, shuffle=False)
+test_loader = DataLoader(testDataset,batch_size=16, shuffle=False)
 
 #Test
 g,p_ave,p_min,p_max = predicting(model, device, test_loader,Model_type=3)
@@ -458,7 +458,7 @@ model.load_state_dict(weights)
 ###装载测试数据
 # testDataset = seqData_NBAT(pair_path='./data/Nanobody_Antigen-main/all_pair_data.csv')
 testDataset = seqData_GST()
-test_loader = DataLoader(testDataset, batch_size=128, shuffle=False)
+test_loader = DataLoader(testDataset,batch_size=16, shuffle=False)
 
 #Test
 g,p_ave,p_min,p_max = predicting(model, device, test_loader,Model_type=3)
