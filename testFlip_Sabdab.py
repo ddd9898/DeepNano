@@ -11,7 +11,7 @@ from torch.nn import functional as F
 import warnings
 warnings.filterwarnings("ignore")
 from models.models import DeepNano_seq,DeepNano
-from utils.dataloader import split_Train_Test,seqData_NBAT_Test
+from utils.dataloader import seqData_NBAT_Test
 from utils.evaluate import evaluate
 
 from torch.utils.data import Dataset
@@ -35,29 +35,58 @@ CUDA_VISIBLE_DEVICES=0 python train_Sabdab.py --Model 1 --finetune 1 &
 
 '''
 
+# class seqData_Sabdab(Dataset):
+#     def __init__(self, data, addNeg=True,flip=False):
+#         super(seqData_Sabdab,self).__init__()
+        
+#         # data = pd.read_csv(pair_path).values.tolist()
+#         self.seq_data = list()
+#         for item in data:
+#             _,_,seq1,_,_,seq2,_,_,_ = item
+#             if len(seq1)>800 or len(seq2)>800:
+#                 continue
+#             self.seq_data.append([seq1,seq2,1])
+
+#         ##Add negative
+#         seq_data_neg = list()
+#         candidates = list(range(len(self.seq_data)))
+#         if addNeg:
+#             for idx1 in candidates:
+#                 for t in range(10):
+#                     idx2 = random.choice(candidates)
+#                     seq_data_neg.append([self.seq_data[idx2][0],self.seq_data[idx1][1],0])
+                
+#             self.seq_data.extend(seq_data_neg)
+            
+#         ##Flip
+#         if flip:
+#             flip_pairs = list()
+#             for item in self.seq_data:
+#                 seq1, seq2, label = item
+#                 flip_pairs.append([seq2,seq1,label])
+#             self.seq_data.extend(flip_pairs)
+
+
+#     def __len__(self):
+#         return len(self.seq_data)
+
+#     def __getitem__(self,i):
+#         seq1,seq2,label = self.seq_data[i]
+
+#         return seq1,seq2,label
+
+
 class seqData_Sabdab(Dataset):
-    def __init__(self, data, addNeg=True,flip=False):
+    def __init__(self, pair_path, flip=False):
         super(seqData_Sabdab,self).__init__()
         
-        # data = pd.read_csv(pair_path).values.tolist()
+        data = pd.read_csv(pair_path).values.tolist()
         self.seq_data = list()
         for item in data:
-            _,_,seq1,_,_,seq2,_,_,_ = item
-            if len(seq1)>800 or len(seq2)>800:
-                continue
-            self.seq_data.append([seq1,seq2,1])
+            ID1,seq1,ID2,seq2,label = item
 
-        ##Add negative
-        seq_data_neg = list()
-        candidates = list(range(len(self.seq_data)))
-        if addNeg:
-            for idx1 in candidates:
-                for t in range(10):
-                    idx2 = random.choice(candidates)
-                    seq_data_neg.append([self.seq_data[idx2][0],self.seq_data[idx1][1],0])
-                
-            self.seq_data.extend(seq_data_neg)
-            
+            self.seq_data.append([seq1,seq2,label])
+
         ##Flip
         if flip:
             flip_pairs = list()
@@ -218,15 +247,15 @@ if __name__ == '__main__':
 
     
     #Step 1:Prepare dataloader
-    trainData,valData = split_Train_Test(data_path='./data/Sabdab/all_binding_site_data_5A.csv',test_ratio=0.05)
+    # trainData,valData = split_Train_Test(data_path='./data/Sabdab/all_binding_site_data_5A.csv',test_ratio=0.05)
 
-    trainDataset = seqData_Sabdab(trainData,addNeg=True,flip=True)
-    valDataset   = seqData_Sabdab(valData,addNeg=True,flip=False)
+    trainDataset = seqData_Sabdab('./data/Sabdab/NAI_train.csv',flip=True)
+    valDataset   = seqData_Sabdab('./data/Sabdab/NAI_val.csv', flip=False)
     testDataset  = seqData_NBAT_Test(seq_path='./data/Nanobody_Antigen-main/all_pair_data.seqs.fasta',
                                 pair_path = './data/Nanobody_Antigen-main/all_pair_data.pair.tsv')
     train_loader = DataLoader(trainDataset, batch_size=BATCH_SIZE, shuffle=True,pin_memory=True,drop_last=True)
     val_loader = DataLoader(valDataset, batch_size=BATCH_SIZE, shuffle=False,drop_last=True)
-    test_loader = DataLoader(testDataset, batch_size=BATCH_SIZE, shuffle=False,drop_last=True)
+    test_loader = DataLoader(testDataset, batch_size=BATCH_SIZE, shuffle=False,drop_last=False)
 
     #Step 2: Set  model
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
