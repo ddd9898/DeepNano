@@ -84,7 +84,7 @@ For the human serum albumin (609aa), to predict its interactions with 1 million 
 | DeepNano-seq | 1.15 | 2.27 | 6.92  | 20.3 |
 | DeepNano     | 2.30 | 4.62 | 13.92 | 40.8 |
 
-Time units are in hours. The prediction was made on a 40G A100.
+Time units are in hours. 
 
 
 ***
