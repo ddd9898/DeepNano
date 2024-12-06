@@ -1,7 +1,7 @@
 # DeepNano
 
-[Paper] 
-
+DeepNano is a tool for predicting nanobody-antigen interactions. This repository contains code and model weights for DeepNano-seq, DeepNano-site and DeepNano. More details can be found in our [paper](https://doi.org/10.1038/s42256-024-00940-5) .
+![Structure](fig1.tif)
 ***
 ### System requirements
 
@@ -109,6 +109,9 @@ Time units are in hours.
    python test_background.py  --size 100w
    ```
 
+***
+## Cite
+Deng, J., Gu, M., Zhang, P. et al. Nanobody–antigen interaction prediction with ensemble deep learning and prompt-based protein language models. Nat Mach Intell (2024). https://doi.org/10.1038/s42256-024-00940-5
 
 ***
 ## Contact
