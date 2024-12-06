@@ -1,7 +1,7 @@
 # DeepNano
 
 DeepNano is a tool for predicting nanobody-antigen interactions. This repository contains code and model weights for DeepNano-seq, DeepNano-site and DeepNano. More details can be found in our [paper](https://doi.org/10.1038/s42256-024-00940-5) .
- <img title="" src="./fig1.tif" alt="Alternative text" width="637">
+ <img title="" src="./fig1.png" alt="Alternative text" width="637">
 ***
 ### System requirements
 
