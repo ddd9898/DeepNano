@@ -30,7 +30,7 @@ def get_args():
     parser = argparse.ArgumentParser(description='Train the model',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     
-    parser.add_argument('--size', dest='size', type=str, default='10w',
+    parser.add_argument('--size', dest='size', type=str, default='100w',
                         help='size',metavar='E')
     
 
