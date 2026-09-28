@@ -118,4 +118,4 @@ Deng, J., Gu, M., Zhang, P. et al. Nanobody–antigen interaction prediction wit
 ## Contact
 
 
-Feel free to contact djt20@mails.tsinghua.edu.cn if you have issues for any questions.
+Feel free to contact 1875906993@qq.com if you have issues for any questions.
